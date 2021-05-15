@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nicole.ssm.dao.ArtworkDao">
+
+    <resultMap id="BaseResultMap" type="com.nicole.ssm.entity.Artwork">
+        <!--@Table artwork-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="INTEGER"/>
+        <result property="updatedAt" column="updated_at" jdbcType="INTEGER"/>
+        <result property="editorId" column="editor_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="manuOneId" column="manu_one_id" jdbcType="INTEGER"/>
+        <result property="manuTwoId" column="manu_two_id" jdbcType="INTEGER"/>
+        <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
+        <result property="thumbnailImageUrl" column="thumbnail_image_url" jdbcType="VARCHAR"/>
+        <result property="videoUrl" column="video_url" jdbcType="VARCHAR"/>
+        <result property="imageUrl" column="image_url" jdbcType="VARCHAR"/>
+        <result property="article" column="article" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询所有可展示数据，根据修改时间先新后旧-->
+    <select id="queryArtworksNewUpdate" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+          id, created_at, updated_at, editor_id, name, status, manu_one_id, manu_two_id, introduction, thumbnail_image_url, video_url, image_url, article
+        from art_room.artwork
+        where status = 1
+        ORDER BY updated_at ${orderBy}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, created_at, updated_at, editor_id, name, status, manu_one_id, manu_two_id, introduction, thumbnail_image_url, video_url, image_url, article
+        from art_room.artwork
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, created_at, updated_at, editor_id, name, status, manu_one_id, manu_two_id, introduction, thumbnail_image_url, video_url, image_url, article
+        from art_room.artwork
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, created_at, updated_at, editor_id, name, status, manu_one_id, manu_two_id, introduction, thumbnail_image_url, video_url, image_url, article
+        from art_room.artwork
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="createdAt != null">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt != null">
+                and updated_at = #{updatedAt}
+            </if>
+            <if test="editorId != null">
+                and editor_id = #{editorId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="manuOneId != null">
+                and manu_one_id = #{manuOneId}
+            </if>
+            <if test="manuTwoId != null">
+                and manu_two_id = #{manuTwoId}
+            </if>
+            <if test="introduction != null and introduction != ''">
+                and introduction = #{introduction}
+            </if>
+            <if test="thumbnailImageUrl != null and thumbnailImageUrl != ''">
+                and thumbnail_image_url = #{thumbnailImageUrl}
+            </if>
+            <if test="videoUrl != null and videoUrl != ''">
+                and video_url = #{videoUrl}
+            </if>
+            <if test="imageUrl != null and imageUrl != ''">
+                and image_url = #{imageUrl}
+            </if>
+            <if test="article != null and article != ''">
+                and article = #{article}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into art_room.artwork(created_at, updated_at, editor_id, name, status, manu_one_id, manu_two_id, introduction, thumbnail_image_url, video_url, image_url, article)
+        values (#{createdAt}, #{updatedAt}, #{editorId}, #{name}, #{status}, #{manuOneId}, #{manuTwoId}, #{introduction}, #{thumbnailImageUrl}, #{videoUrl}, #{imageUrl}, #{article})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update art_room.artwork
+        <set>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="editorId != null">
+                editor_id = #{editorId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="manuOneId != null">
+                manu_one_id = #{manuOneId},
+            </if>
+            <if test="manuTwoId != null">
+                manu_two_id = #{manuTwoId},
+            </if>
+            <if test="introduction != null and introduction != ''">
+                introduction = #{introduction},
+            </if>
+            <if test="thumbnailImageUrl != null and thumbnailImageUrl != ''">
+                thumbnail_image_url = #{thumbnailImageUrl},
+            </if>
+            <if test="videoUrl != null and videoUrl != ''">
+                video_url = #{videoUrl},
+            </if>
+            <if test="imageUrl != null and imageUrl != ''">
+                image_url = #{imageUrl},
+            </if>
+            <if test="article != null and article != ''">
+                article = #{article},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from art_room.artwork where id = #{id}
+    </delete>
+
+</mapper>
