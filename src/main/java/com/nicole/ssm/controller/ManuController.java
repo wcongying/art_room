@@ -67,7 +67,7 @@ public class ManuController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+    @GetMapping("/")
     public Manu selectOne(Long id) {
         return this.manuService.queryById(id);
     }

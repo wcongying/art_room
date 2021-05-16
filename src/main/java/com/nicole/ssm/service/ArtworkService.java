@@ -25,6 +25,14 @@ public interface ArtworkService {
     List<Artwork> queryArtworksNewUpdate();
 
     /**
+     * 查询对应manuId下可展示作品，根据修改时间先新后旧
+     *
+     *
+     * @return 对象列表
+     */
+    List<Artwork> queryArtworksManuId( long manuId );
+
+    /**
      * 通过ID查询单条数据
      *
      * @param id 主键
@@ -64,5 +72,6 @@ public interface ArtworkService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
 
 }

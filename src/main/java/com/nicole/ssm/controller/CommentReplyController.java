@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/commentReply")
 public class CommentReplyController {
 
-//    private Logger logger = LoggerFactory.getLogger(CommentReplyController.class);
+    private Logger logger = LoggerFactory.getLogger(CommentReplyController.class);
 
     /**
      * 服务对象
@@ -54,7 +54,7 @@ public class CommentReplyController {
      *
      * @return 对象列表,层级展示
      */
-    @RequestMapping (value = "/commentallreply/{artworkId}", method = RequestMethod.GET)
+    @RequestMapping (value = "/allcommentreply/{artworkId}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> queryArtworkIdCommentAndReply(@PathVariable long artworkId) {
         List<CommentReplyVo> commentRepliesVo = this.commentReplyService.
@@ -66,12 +66,12 @@ public class CommentReplyController {
     }
 
     /**
-     * 新增数据
+     * 新增数据一个
      *
      * @param commentReply 实例对象
      * @return 实例对象
      */
-    @RequestMapping (value = "/one", method = RequestMethod.POST)
+    @RequestMapping (value = "/", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> insertOneCommentReply(@RequestBody CommentReply commentReply) {
         if( null == commentReply ){
@@ -99,7 +99,7 @@ public class CommentReplyController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("/One")
+    @GetMapping("/")
     public CommentReply selectOne(Long id) {
         return this.commentReplyService.queryById(id);
     }

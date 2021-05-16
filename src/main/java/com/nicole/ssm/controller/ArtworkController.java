@@ -1,6 +1,5 @@
 package com.nicole.ssm.controller;
 
-import com.nicole.ssm.entity.Artstudio;
 import com.nicole.ssm.entity.Artwork;
 import com.nicole.ssm.rest.Restful;
 import com.nicole.ssm.service.ArtworkService;
@@ -31,7 +30,7 @@ public class ArtworkController {
      *
      * @return 对象列表
      */
-    @RequestMapping (value = "/renewals", method = RequestMethod.GET)
+    @RequestMapping (value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> queryArtworksNewUpdate() {
         List<Artwork> artworks = artworkService.queryArtworksNewUpdate();
@@ -43,12 +42,29 @@ public class ArtworkController {
     }
 
     /**
+     * 查询对应manuId下可展示作品，根据修改时间先新后旧
+     *
+     *
+     * @return 对象列表
+     */
+    @RequestMapping (value = "/manuid/{manuId}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> queryArtworksNewUpdate(@PathVariable long manuId) {
+        List<Artwork> artworks = artworkService.queryArtworksManuId( manuId );
+        if( null != artworks ){
+            return Restful.set(200, "show artworks in manuId " + manuId, artworks);
+
+        }
+        return Restful.set(404, "null artworks");
+    }
+
+    /**
      * 通过主键查询单条数据
      *
      * @param id 主键
      * @return 单条数据
      */
-    @RequestMapping (value = "/one/{id}", method = RequestMethod.GET)
+    @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> OneArtwork(@PathVariable long id) {
         Artwork artwork = this.artworkService.queryById(id);

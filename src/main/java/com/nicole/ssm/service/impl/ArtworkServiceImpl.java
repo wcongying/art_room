@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +31,28 @@ public class ArtworkServiceImpl implements ArtworkService {
     public List<Artwork> queryArtworksNewUpdate() {
         String orderBy = "DESC";
         return this.artworkDao.queryArtworksNewUpdate( orderBy );
+    }
+
+    /**
+     * 查询对应manuId下可展示作品，根据修改时间先新后旧。我看到的是展示二级导航栏下的作品
+     * 一级导航栏不论是hover还是点击，展示的是二级导航栏。但是其实一级导航栏直接展示这个代码也正确。
+     *
+     *
+     * @return 对象列表
+     */
+    @Override
+    public List<Artwork> queryArtworksManuId( long manuId ) {
+        String orderBy = "DESC";
+        List<Artwork> artworks = this.artworkDao.queryArtworksNewUpdate( orderBy );
+        List<Artwork> result = new ArrayList<>();
+        for (int i = 0; i < artworks.size(); i++) {
+            if( manuId == artworks.get(i).getManuTwoId()
+            || manuId == artworks.get(i).getManuOneId()) {
+                result.add( artworks.get( i ) );
+            }
+        }
+
+        return result;
     }
 
     /**

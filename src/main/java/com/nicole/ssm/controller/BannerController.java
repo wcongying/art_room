@@ -48,7 +48,7 @@ public class BannerController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+    @GetMapping("/")
     public Banner selectOne(Long id) {
         return this.bannerService.queryById(id);
     }

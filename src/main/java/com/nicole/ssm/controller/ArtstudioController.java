@@ -3,6 +3,8 @@ package com.nicole.ssm.controller;
 import com.nicole.ssm.entity.Artstudio;
 import com.nicole.ssm.rest.Restful;
 import com.nicole.ssm.service.ArtstudioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/artstudio")
 public class ArtstudioController {
+    private Logger logger = LoggerFactory.getLogger(ArtstudioController.class);
+
     /**
      * 服务对象
      */
@@ -31,7 +35,7 @@ public class ArtstudioController {
      * @param id 主键
      * @return 单条数据
      */
-    @RequestMapping (value = "/one/{id}", method = RequestMethod.GET)
+    @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> selectOne(@PathVariable(name = "id") long id) {
         Artstudio artstudio = this.artstudioService.queryById(id);
@@ -48,7 +52,7 @@ public class ArtstudioController {
      *
      * @return 对象列表
      */
-    @RequestMapping (value = "/allShowed", method = RequestMethod.GET)
+    @RequestMapping (value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> queryAllShow() {
         List<Artstudio> artstudios = artstudioService.queryAllShow();
