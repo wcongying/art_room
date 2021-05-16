@@ -11,6 +11,38 @@
     "custom" : false,
     "ext" : { }
   }, {
+    "name" : "createdAt",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "updatedAt",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "editorId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Long",
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "status",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "ktShortType" : "Int",
+    "custom" : false,
+    "ext" : { }
+  }, {
     "name" : "imageUrl",
     "comment" : null,
     "type" : null,
@@ -29,7 +61,7 @@
   } ],
   "pkColumn" : null,
   "otherColumn" : null,
-  "savePackageName" : "",
-  "savePath" : "./src/main/resources/mapper",
+  "savePackageName" : "com.nicole.ssm",
+  "savePath" : "./src/main/java/com/nicole/ssm",
   "saveModelName" : "art_room"
 }

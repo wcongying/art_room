@@ -6,12 +6,22 @@ import java.io.Serializable;
  * (ArtstudioImage)实体类
  *
  * @author makejava
- * @since 2021-05-15 20:30:58
+ * @since 2021-05-15 23:25:44
  */
 public class ArtstudioImage implements Serializable {
-    private static final long serialVersionUID = 234742343861831722L;
+    private static final long serialVersionUID = -65211264468984058L;
     
     private Long id;
+    
+    private Long createdAt;
+    
+    private Long updatedAt;
+    
+    private Long editorId;
+    /**
+    * show1;noshow0
+    */
+    private Integer status;
     
     private String imageUrl;
     
@@ -24,6 +34,38 @@ public class ArtstudioImage implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getEditorId() {
+        return editorId;
+    }
+
+    public void setEditorId(Long editorId) {
+        this.editorId = editorId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getImageUrl() {

@@ -5,15 +5,18 @@
     <resultMap id="BaseResultMap" type="com.nicole.ssm.entity.ArtstudioImage">
         <!--@Table artstudio_image-->
         <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="INTEGER"/>
+        <result property="updatedAt" column="updated_at" jdbcType="INTEGER"/>
+        <result property="editorId" column="editor_id" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
         <result property="imageUrl" column="image_url" jdbcType="VARCHAR"/>
         <result property="artstudioId" column="artstudio_id" jdbcType="INTEGER"/>
     </resultMap>
 
-
     <!--查询多个，都是ArtstudioId下的图片-->
     <select id="queryByArtstudioId" resultMap="BaseResultMap">
         select
-          id, image_url, artstudio_id
+          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
         from art_room.artstudio_image
         where artstudio_id = #{artstudioId}
     </select>
@@ -21,7 +24,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, image_url, artstudio_id
+          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
         from art_room.artstudio_image
         where id = #{id}
     </select>
@@ -29,7 +32,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, image_url, artstudio_id
+          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
         from art_room.artstudio_image
         limit #{offset}, #{limit}
     </select>
@@ -37,11 +40,23 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, image_url, artstudio_id
+          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
         from art_room.artstudio_image
         <where>
             <if test="id != null">
                 and id = #{id}
+            </if>
+            <if test="createdAt != null">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt != null">
+                and updated_at = #{updatedAt}
+            </if>
+            <if test="editorId != null">
+                and editor_id = #{editorId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
             </if>
             <if test="imageUrl != null and imageUrl != ''">
                 and image_url = #{imageUrl}
@@ -54,14 +69,26 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into art_room.artstudio_image(image_url, artstudio_id)
-        values (#{imageUrl}, #{artstudioId})
+        insert into art_room.artstudio_image(created_at, updated_at, editor_id, status, image_url, artstudio_id)
+        values (#{createdAt}, #{updatedAt}, #{editorId}, #{status}, #{imageUrl}, #{artstudioId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update art_room.artstudio_image
         <set>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="editorId != null">
+                editor_id = #{editorId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
             <if test="imageUrl != null and imageUrl != ''">
                 image_url = #{imageUrl},
             </if>
