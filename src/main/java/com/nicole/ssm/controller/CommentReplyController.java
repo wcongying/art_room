@@ -5,6 +5,7 @@ import com.nicole.ssm.entity.CommentReply;
 import com.nicole.ssm.rest.Restful;
 import com.nicole.ssm.service.CommentReplyService;
 import com.nicole.ssm.vo.CommentReplyVo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,10 @@ import java.util.Map;
 /**
  * (CommentReply)表控制层
  *
- * @author makejava
- * @since 2021-05-11 15:40:08
+ * @author nicole
  */
 @RestController
-@RequestMapping("/commentReply")
+@RequestMapping("/commentreply")
 public class CommentReplyController {
 
     private Logger logger = LoggerFactory.getLogger(CommentReplyController.class);
@@ -33,10 +33,17 @@ public class CommentReplyController {
     private CommentReplyService commentReplyService;
 
     /**
-     * 查询作品Id下所有留言评论
-     *
-     *
-     * @return 对象列表,平板带parent_id
+     * @api {GET} /commentReply/all/{artworkId} queryShowByArtworkId
+     * @apiVersion 1.0.0
+     * @apiGroup CommentReplyController
+     * @apiName queryShowByArtworkId
+     * @apiDescription 查询作品Id下所有留言评论。return 对象列表,平板带parent_id
+     * @apiParam (请求参数) {Number} artworkId
+     * @apiParamExample 请求参数示例
+     * artworkId=6705
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/all/{artworkId}", method = RequestMethod.GET)
     @ResponseBody
@@ -49,10 +56,18 @@ public class CommentReplyController {
     }
 
     /**
-     * 查询作品Id下所有留言评论,层级展示
-     *
-     *
-     * @return 对象列表,层级展示
+     * @api {GET} /commentReply/allcommentreply/{artworkId} queryArtworkIdCommentAndReply
+     * @apiVersion 1.0.0
+     * @apiGroup CommentReplyController
+     * @apiName queryArtworkIdCommentAndReply
+     * @apiDescription 查询作品Id下所有留言评论, 层级展示
+     * return 对象列表,层级展示
+     * @apiParam (请求参数) {Number} artworkId
+     * @apiParamExample 请求参数示例
+     * artworkId=5454
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/allcommentreply/{artworkId}", method = RequestMethod.GET)
     @ResponseBody
@@ -66,10 +81,24 @@ public class CommentReplyController {
     }
 
     /**
-     * 新增数据一个
-     *
-     * @param commentReply 实例对象
-     * @return 实例对象
+     * @api {POST} /commentReply insertOneCommentReply
+     * @apiVersion 1.0.0
+     * @apiGroup CommentReplyController
+     * @apiName insertOneCommentReply
+     * @apiDescription 新增评论或者留言一个
+     * @apiParam (请求体) {Number} id
+     * @apiParam (请求体) {Number} createdAt
+     * @apiParam (请求体) {Number} updatedAt
+     * @apiParam (请求体) {Number} editorId
+     * @apiParam (请求体) {Number} artworkId
+     * @apiParam (请求体) {Number} status comment shows1;noshow0;administrators' reply2
+     * @apiParam (请求体) {Number} parentId
+     * @apiParam (请求体) {String} content
+     * @apiParamExample 请求体示例
+     * {"createdAt":1678,"editorId":6900,"artworkId":8177,"id":3060,"parentId":4350,"content":"AzLfnNst0","updatedAt":7315,"status":2955}
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/", method = RequestMethod.POST)
     @ResponseBody
@@ -78,7 +107,7 @@ public class CommentReplyController {
             return Restful.set(404, "null comments replies");
         }
 
-        if( null == commentReply.getArtworkId() || null == commentReply.getContent() ||
+        if( null == commentReply.getArtworkId() || StringUtils.isBlank( commentReply.getContent()) ||
                 null == commentReply.getEditorId() || null == commentReply.getParentId() ||
                 null ==commentReply.getStatus()){
             return Restful.set(400, "null field(s), please enter all required fields");

@@ -28,10 +28,18 @@ public class ManuController {
     private ManuService manuService;
 
     /**
-     * 查询root下所有目录,should be show 1
-     *
-     *
-     * @return 对象列表,平板带parent_id
+     * @api {GET} /manu/sortedlist/{rootId} queryAllChildrenManus
+     * @apiVersion 1.0.0
+     * @apiGroup ManuController
+     * @apiName queryAllChildrenManus
+     * @apiDescription 查询root下所有目录, should be show 1
+     * return 对象列表,平板带parent_id
+     * @apiParam (请求参数) {Number} rootId
+     * @apiParamExample 请求参数示例
+     * rootId=2216
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/sortedlist/{rootId}", method = RequestMethod.GET)
     @ResponseBody
@@ -45,10 +53,18 @@ public class ManuController {
     }
 
     /**
-     * 查询root下所有目录,should be show 1
-     *
-     *
-     * @return tree
+     * @api {GET} /manu/manuVoTree/{rootId} queryAllChildrenManuVos
+     * @apiVersion 1.0.0
+     * @apiGroup ManuController
+     * @apiName queryAllChildrenManuVos
+     * @apiDescription 查询root下所有目录, should be show 1
+     * return 导航栏tree
+     * @apiParam (请求参数) {Number} rootId
+     * @apiParamExample 请求参数示例
+     * rootId=8841
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/manuVoTree/{rootId}", method = RequestMethod.GET)
     @ResponseBody

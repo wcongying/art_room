@@ -30,10 +30,17 @@ public class ArtstudioController {
     private ArtstudioService artstudioService;
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     * @api {GET} /artstudio/{id} selectOne
+     * @apiVersion 1.0.0
+     * @apiGroup ArtstudioController
+     * @apiName selectOne
+     * @apiDescription 选择一个工作室管理页面
+     * @apiParam (请求参数) {Number} id
+     * @apiParamExample 请求参数示例
+     * id=2221
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -47,10 +54,14 @@ public class ArtstudioController {
 
 
     /**
-     * 查询所有展示的artstudio,should be show 1。后台使用，image_url不处理，后台，且列表不展示图
-     *
-     *
-     * @return 对象列表
+     * @api {GET} /artstudio/all queryAllShow
+     * @apiVersion 1.0.0
+     * @apiGroup ArtstudioController
+     * @apiName queryAllShow
+     * @apiDescription 查询所有展示的artstudio, should be show 1。后台使用，image_url不处理，后台，且列表不展示图
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/all", method = RequestMethod.GET)
     @ResponseBody

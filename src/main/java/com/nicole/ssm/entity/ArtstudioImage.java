@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (ArtstudioImage)实体类
  *
  * @author makejava
- * @since 2021-05-15 23:25:44
+ * @since 2021-05-17 17:21:17
  */
 public class ArtstudioImage implements Serializable {
-    private static final long serialVersionUID = -65211264468984058L;
+    private static final long serialVersionUID = -12490891883418678L;
     
     private Long id;
     

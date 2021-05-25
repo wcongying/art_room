@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (Artwork)实体类
  *
  * @author makejava
- * @since 2021-05-11 15:40:08
+ * @since 2021-05-17 17:21:18
  */
 public class Artwork implements Serializable {
-    private static final long serialVersionUID = -32973845721747057L;
+    private static final long serialVersionUID = 613256449325643190L;
     
     private Long id;
     

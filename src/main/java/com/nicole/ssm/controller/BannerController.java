@@ -27,10 +27,14 @@ public class BannerController {
     private BannerService bannerService;
 
     /**
-     * 查询X个banners,限制目前是6个,should be show 1
-     *
-     *
-     * @return 对象列表
+     * @api {GET} /banner/limitbanners queryLimitArtstudios
+     * @apiVersion 1.0.0
+     * @apiGroup BannerController
+     * @apiName queryLimitArtstudios
+     * @apiDescription 查询X个banners, 限制目前是6个, should be show 1
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/limitbanners", method = RequestMethod.GET)
     @ResponseBody

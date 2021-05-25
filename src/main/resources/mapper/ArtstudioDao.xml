@@ -22,13 +22,14 @@
         from art_room.artstudio
         where status = 1
     </select>
-<!--    &lt;!&ndash;查询指定数量上架数据&ndash;&gt;
+
+    <!--查询指定数量上架数据-->
     <select id="queryLimitArtstudios" resultMap="BaseResultMap">
         select
           id, created_at, updated_at, editor_id, name, status, image_url, content
         from art_room.artstudio
         where status = 1
-    </select>-->
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">

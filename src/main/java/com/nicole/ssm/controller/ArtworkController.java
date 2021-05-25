@@ -25,10 +25,14 @@ public class ArtworkController {
     private ArtworkService artworkService;
 
     /**
-     * 查询所有可展示作品，根据修改时间先新后旧
-     *
-     *
-     * @return 对象列表
+     * @api {GET} /artwork/all queryArtworksNewUpdate
+     * @apiVersion 1.0.0
+     * @apiGroup ArtworkController
+     * @apiName queryArtworksNewUpdate
+     * @apiDescription 查询所有可展示作品，根据修改时间先新后旧
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/all", method = RequestMethod.GET)
     @ResponseBody
@@ -42,10 +46,17 @@ public class ArtworkController {
     }
 
     /**
-     * 查询对应manuId下可展示作品，根据修改时间先新后旧
-     *
-     *
-     * @return 对象列表
+     * @api {GET} /artwork/manuid/{manuId} queryArtworksNewUpdate
+     * @apiVersion 1.0.0
+     * @apiGroup ArtworkController
+     * @apiName queryArtworksNewUpdate
+     * @apiDescription 查询对应manuId下可展示作品，根据修改时间先新后旧
+     * @apiParam (请求参数) {Number} manuId
+     * @apiParamExample 请求参数示例
+     * manuId=5445
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/manuid/{manuId}", method = RequestMethod.GET)
     @ResponseBody
@@ -59,10 +70,17 @@ public class ArtworkController {
     }
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     * @api {GET} /artwork/{id} OneArtwork
+     * @apiVersion 1.0.0
+     * @apiGroup ArtworkController
+     * @apiName OneArtwork
+     * @apiDescription 通过主键查询单条作品
+     * @apiParam (请求参数) {Number} id
+     * @apiParamExample 请求参数示例
+     * id=495
+     * @apiSuccess (响应结果) {Object} response
+     * @apiSuccessExample 响应结果示例
+     * {}
      */
     @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     @ResponseBody

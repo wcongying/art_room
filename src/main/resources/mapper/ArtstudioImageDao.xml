@@ -13,10 +13,14 @@
         <result property="artstudioId" column="artstudio_id" jdbcType="INTEGER"/>
     </resultMap>
 
+    <sql id="Base_Column_List">
+    id, created_at, updated_at, editor_id, status, image_url, artstudio_id
+  </sql>
+
     <!--查询多个，都是ArtstudioId下的图片-->
     <select id="queryByArtstudioId" resultMap="BaseResultMap">
         select
-          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
+        <include refid="Base_Column_List" />
         from art_room.artstudio_image
         where artstudio_id = #{artstudioId}
     </select>
@@ -24,7 +28,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
+        <include refid="Base_Column_List" />
         from art_room.artstudio_image
         where id = #{id}
     </select>
@@ -32,7 +36,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
+        <include refid="Base_Column_List" />
         from art_room.artstudio_image
         limit #{offset}, #{limit}
     </select>
@@ -40,7 +44,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, created_at, updated_at, editor_id, status, image_url, artstudio_id
+        <include refid="Base_Column_List" />
         from art_room.artstudio_image
         <where>
             <if test="id != null">

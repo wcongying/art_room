@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (Banner)实体类
  *
  * @author makejava
- * @since 2021-05-11 15:40:08
+ * @since 2021-05-17 17:21:19
  */
 public class Banner implements Serializable {
-    private static final long serialVersionUID = 836107116462760821L;
+    private static final long serialVersionUID = 668702215745218379L;
     
     private Long id;
     

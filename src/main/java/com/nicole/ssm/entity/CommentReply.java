@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (CommentReply)实体类
  *
  * @author makejava
- * @since 2021-05-11 15:40:08
+ * @since 2021-05-17 17:21:19
  */
 public class CommentReply implements Serializable {
-    private static final long serialVersionUID = -56356375654024099L;
+    private static final long serialVersionUID = -75754340982022761L;
     
     private Long id;
     

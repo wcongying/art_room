@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * (ArtstudioImage)表数据库访问层
  *
- * @author makejava
- * @since 2021-05-15 20:30:58
+ * @author nicole
  */
 public interface ArtstudioImageDao {
 

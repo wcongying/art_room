@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (Manu)实体类
  *
  * @author makejava
- * @since 2021-05-11 15:40:08
+ * @since 2021-05-17 17:21:20
  */
 public class Manu implements Serializable {
-    private static final long serialVersionUID = -58682787781781188L;
+    private static final long serialVersionUID = 249807985548690572L;
     
     private Long id;
     
